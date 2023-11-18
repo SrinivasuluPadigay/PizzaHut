@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header section for Pizza Size and Description -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Large 14 Hand Tossed Pizza"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:paddingBottom="8dp"/>
+
+        <!-- Serving Options Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. SERVING OPTIONS"
+            android:textStyle="bold"/>
+
+        <!-- For Select Crust Dropdown -->
+        <Spinner
+            android:id="@+id/spinner_crust"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Repeat similar structures for Size, Quantity etc. -->
+
+        <!-- Sauce Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. SAUCE"
+            android:textStyle="bold"/>
+
+        <!-- Repeat similar structures for each sauce option -->
+
+        <!-- Cheese Section -->
+        <!-- Repeat similar structures for cheese options -->
+
+        <!-- Toppings Section -->
+        <!-- Repeat similar structures for topping options -->
+
+        <!-- Special Instructions Section -->
+        <!-- Repeat similar structures for special instructions -->
+
+        <!-- Add to Order Button -->
+        <Button
+            android:id="@+id/button_add_to_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADD TO ORDER"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DetailsFragment" />
+    -->
