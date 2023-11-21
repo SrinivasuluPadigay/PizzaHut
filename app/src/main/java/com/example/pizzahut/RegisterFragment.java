@@ -24,10 +24,12 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import com.example.pizzahut.databinding.FragmentLoginBinding;
 import com.example.pizzahut.databinding.FragmentRegisterBinding;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class RegisterFragment extends Fragment {
@@ -52,7 +54,7 @@ public class RegisterFragment extends Fragment {
     }
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    // FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -94,6 +96,29 @@ public class RegisterFragment extends Fragment {
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                         .setDisplayName(first_name + " " + last_name)
                                         .build();
+
+                                Map<String, Object> user_to_add = new HashMap<>();
+                                user_to_add.put("first_name", first_name);
+                                user_to_add.put("last_name", last_name);
+                                user_to_add.put("email", email);
+                                user_to_add.put("phone_number", phone_number);
+
+                                // Add a new document with a generated ID
+                                db.collection("users")
+                                        .add(user_to_add)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Log.d("Info", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("Info", "Error adding document", e);
+                                            }
+                                        });
+
 
                                 user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
