@@ -167,7 +167,7 @@
             android:id="@+id/textViewSauceTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:background="@color/heading_background"
             android:text="@string/sauce_title"
             android:textColor="@color/text"
@@ -206,6 +206,7 @@
             android:id="@+id/spinnerSelectedSauce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/spaceFour"
             app:layout_constraintTop_toBottomOf="@+id/spaceFour" />
@@ -257,6 +258,7 @@
             android:id="@+id/textViewToppingsTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:background="@color/heading_background"
             android:text="@string/toppings_title"
             android:textColor="@color/text"
@@ -320,7 +322,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/textViewSelectSalami"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewIncrementMarinaraSauceDipping"
             app:layout_constraintTop_toTopOf="@+id/textViewSelectSalami" />
 
         <TextView
@@ -707,6 +709,245 @@
             app:layout_constraintBottom_toBottomOf="@+id/textViewSelectShreddedParmesanAsiago"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textViewSelectShreddedParmesanAsiago" />
+
+        <TextView
+            android:id="@+id/textViewExtraSauceTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/heading_background"
+            android:text="@string/extra_sauce_title"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectShreddedParmesanAsiago" />
+
+        <TextView
+            android:id="@+id/textViewSelectGralicDipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/gralic_dipping_cup"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewExtraSauceTitle" />
+
+        <ImageView
+            android:id="@+id/imageViewDecrementGarlicDipping"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIncrementGarlicDipping"
+            app:layout_constraintEnd_toStartOf="@+id/textViewItemQuantityGarlicDipping"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIncrementGarlicDipping"
+            app:srcCompat="@drawable/ic_minus" />
+
+        <TextView
+            android:id="@+id/textViewItemQuantityGarlicDipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="0"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIncrementGarlicDipping"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewIncrementGarlicDipping"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIncrementGarlicDipping" />
+
+        <ImageView
+            android:id="@+id/imageViewIncrementGarlicDipping"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectGralicDipping"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectGralicDipping"
+            app:srcCompat="@drawable/ic_plus" />
+
+        <TextView
+            android:id="@+id/textViewSelectRanchDipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ranch_dipping_cup"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectGralicDipping" />
+
+        <ImageView
+            android:id="@+id/imageViewDecrementRanchDipping"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIncrementRanchDipping"
+            app:layout_constraintEnd_toStartOf="@+id/textViewItemQuantityRanchDipping"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIncrementRanchDipping"
+            app:srcCompat="@drawable/ic_minus" />
+
+        <TextView
+            android:id="@+id/textViewItemQuantityRanchDipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="0"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIncrementRanchDipping"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewIncrementRanchDipping"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIncrementRanchDipping" />
+
+        <ImageView
+            android:id="@+id/imageViewIncrementRanchDipping"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectRanchDipping"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectRanchDipping"
+            app:srcCompat="@drawable/ic_plus" />
+
+        <TextView
+            android:id="@+id/textViewSelectMarinaraSauceDipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/marinara_dipping_cup"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectRanchDipping" />
+
+        <ImageView
+            android:id="@+id/imageViewDecrementMarinaraSauceDipping"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIncrementMarinaraSauceDipping"
+            app:layout_constraintEnd_toStartOf="@+id/textViewItemQuantityMarinaraSauceDipping"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIncrementMarinaraSauceDipping"
+            app:srcCompat="@drawable/ic_minus" />
+
+        <TextView
+            android:id="@+id/textViewItemQuantityMarinaraSauceDipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="0"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIncrementMarinaraSauceDipping"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewIncrementMarinaraSauceDipping"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIncrementMarinaraSauceDipping" />
+
+        <ImageView
+            android:id="@+id/imageViewIncrementMarinaraSauceDipping"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectMarinaraSauceDipping"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectMarinaraSauceDipping"
+            app:srcCompat="@drawable/ic_plus" />
+
+        <TextView
+            android:id="@+id/textViewSpecialInstructionsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/heading_background"
+            android:text="@string/special_instructions"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectMarinaraSauceDipping" />
+
+        <TextView
+            android:id="@+id/textViewSelectCutSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/cut_type"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSpecialInstructionsTitle" />
+
+        <Spinner
+            android:id="@+id/spinnerCutType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectCutSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectCutSize"
+            android:entries="@array/cut_type_list"/>
+
+        <TextView
+            android:id="@+id/textViewSelectBakeType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/bake_type"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectCutSize" />
+
+        <Spinner
+            android:id="@+id/spinnerBakeType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectBakeType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectBakeType"
+            android:entries="@array/bake_type_list"/>
+
+        <TextView
+            android:id="@+id/textViewSelectSeasoning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/cut_type"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectBakeType" />
+
+        <Spinner
+            android:id="@+id/spinnerSeasoning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F44336"
+            android:entries="@array/seasoning_type_list"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectSeasoning"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectSeasoning" />
+
+
+        <Button
+            android:id="@+id/ButtonAddToOrder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/red_button_color"
+            android:text="@string/button_add_to_order"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectSeasoning" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

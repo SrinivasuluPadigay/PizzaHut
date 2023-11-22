@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="heading_background">#00BCD4</color>
+    <color name="red_button_color">#F44336</color>
     <color name="text">#000000</color>
 
 </resources>
