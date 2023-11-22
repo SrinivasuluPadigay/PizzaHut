@@ -47,6 +47,23 @@
     <string name="select_feta_cheese">Feta Cheese</string>
     <string name="select_shredded_parmesan_asiago">Shredded Parmesan Asiagno</string>
     <string name="cancel_label">Cancel</string>
+    <string name="extra_sauce_title">5. Add Sauce For Dipping</string>
+    <string name="gralic_dipping_cup">Garlic Dipping Cup</string>
+    <string name="ranch_dipping_cup">Ranch Dipping Cup</string>
+    <string name="marinara_dipping_cup">Marinara Sauce Dipping Cup</string>
+    <string name="special_instructions">6. Special Instructions</string>
+    <string name="cut_type">Cut</string>
+    <string name="bake_type">Bake</string>
+    <string name="seasoning_type">Seasoning</string>
+    <string name="button_add_to_order">Add to order</string>
+    <string name="products">Products</string>
+    <string name="food_and_beverages">Food and Beverages:</string>
+    <string name="taxes">Taxes: </string>
+    <string name="final_total">Total: </string>
+    <string name="button_checkout">Checkout</string>
+    <string name="thank_you_title">THANK YOU FOR YOUR ORDER</string>
+    <string name="order_description">Please visit the Pizza Hut Store and show them this screen or tell them the order number to receive your order. Your order details are below.</string>
+    <string name="line">__________________________________</string>
     <string-array name="toppings_quantity">
         <item>None</item>
         <item>Light</item>
@@ -63,4 +80,22 @@
         <item>Alfredo Sauce</item>
         <item>Ranch</item>
     </string-array>
+
+    <string-array name="cut_type_list">
+        <item>Pie Cut</item>
+        <item>Square Cut</item>
+        <item>Uncut</item>
+    </string-array>
+
+    <string-array name="bake_type_list">
+        <item>Normal Bake</item>
+        <item>Well Done</item>
+    </string-array>
+
+    <string-array name="seasoning_type_list">
+        <item>Garlic-Seasoned Crust</item>
+        <item>No Garlic-Seasoned Crust</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
