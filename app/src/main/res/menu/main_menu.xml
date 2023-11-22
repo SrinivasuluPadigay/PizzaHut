@@ -7,7 +7,6 @@
         android:title="cart_item"
         app:showAsAction="always" />
 
-
     <item android:id="@+id/logout_item"
         android:title="logout"
         app:showAsAction="always"/>
