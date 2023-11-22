@@ -30,9 +30,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="#000000"
+            android:background="@color/heading_background"
             android:text="@string/serving_options"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,8 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
-            android:textAlignment="textEnd"
+            android:text=">"
+            android:gravity="center_horizontal"
             android:textColor="#3F51B5"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -93,8 +93,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
-            android:textAlignment="textEnd"
+            android:text=">"
+            android:gravity="center_horizontal"
             android:textColor="#3F51B5"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +115,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:text="@string/select_quantity"
             android:textColor="#000000"
             android:textStyle="bold"
@@ -123,19 +122,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spaceThree" />
 
-        <TextView
-            android:id="@+id/textViewQuantitySelected"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
-            android:textAlignment="textEnd"
-            android:textColor="#3F51B5"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+        <ImageView
+            android:id="@+id/imageViewDecrement"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewQuantity"
             app:layout_constraintStart_toEndOf="@+id/spaceThree"
-            app:layout_constraintTop_toBottomOf="@+id/spaceThree" />
+            app:layout_constraintTop_toBottomOf="@+id/spaceThree"
+            app:srcCompat="@drawable/ic_minus" />
+
+        <TextView
+            android:id="@+id/textViewItemQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="0"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewDecrement"
+            app:layout_constraintStart_toEndOf="@+id/imageViewDecrement"
+            app:layout_constraintTop_toTopOf="@+id/imageViewDecrement" />
+
+        <ImageView
+            android:id="@+id/imageViewIncrement"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewItemQuantity"
+            app:layout_constraintStart_toEndOf="@+id/textViewItemQuantity"
+            app:layout_constraintTop_toTopOf="@+id/textViewItemQuantity"
+            app:srcCompat="@drawable/ic_plus" />
+
 
         <Space
             android:id="@+id/spaceThree"
@@ -150,12 +167,13 @@
             android:id="@+id/textViewSauceTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="#000000"
+            android:layout_marginTop="4dp"
+            android:background="@color/heading_background"
             android:text="@string/sauce_title"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.562"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewQuantity" />
 
@@ -172,16 +190,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spaceFour" />
 
-        <TextView
-            android:id="@+id/textViewSelectedSauce"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
-            android:textAlignment="textEnd"
-            android:textColor="#3F51B5"
-            android:textStyle="bold"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectSauce" />
+
+
+        <Spinner
+            android:id="@+id/spinnerSelectedSauce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/spaceFour"
             app:layout_constraintTop_toBottomOf="@+id/spaceFour" />
@@ -200,13 +224,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="#000000"
+            android:background="@color/heading_background"
             android:text="@string/cheese_title"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectSauce" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
         <TextView
             android:id="@+id/textViewSelectCheese"
@@ -221,1132 +245,468 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewCheeseTitle" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectCheese"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerCheese"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectCheese"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectCheese">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectCheese" />
 
         <TextView
             android:id="@+id/textViewToppingsTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="#000000"
+            android:background="@color/heading_background"
             android:text="@string/toppings_title"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectCheese" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectCheese" />
 
         <TextView
             android:id="@+id/textViewSelectHam"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:text="@string/select_ham"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewToppingsTitle" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectHam"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerHam"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectHam"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectHam">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneHam"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightHam"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalHam"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraHam"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectHam" />
 
         <TextView
             android:id="@+id/textViewSelectBeef"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:text="@string/select_beef"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectHam" />
+            app:layout_constraintStart_toStartOf="@+id/textViewSelectHam"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectHam" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectBeef"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerBeef"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectBeef"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectBeef">
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectBeef" />
 
-            <RadioButton
-                android:id="@+id/radioButtonNoneBeef"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightBeef"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalBeef"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraBeef"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
 
         <TextView
             android:id="@+id/textViewSelectSalami"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:text="@string/select_salami"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectBeef" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectBeef" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectSalami"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerSalami"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectSalami"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectSalami">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneSalami"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightSalami"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalSalami"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraSalami"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectSalami" />
 
         <TextView
             android:id="@+id/textViewSelectPepperoni"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:text="@string/select_pepperoni"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectSalami" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectSalami" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectPepperoni"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerPepperoni"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectPepperoni"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectPepperoni">
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectPepperoni" />
 
-            <RadioButton
-                android:id="@+id/radioButtonNonePepperoni"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightPepperoni"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalPepperoni"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraPepperoni"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
 
         <TextView
             android:id="@+id/textViewSelectItalianSausage"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_italian_sausage"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectPepperoni" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectPepperoni" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectItalianSausage"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerSausage"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectItalianSausage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectItalianSausage">
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectItalianSausage" />
 
-            <RadioButton
-                android:id="@+id/radioButtonNoneItalianSausage"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightItalianSausage"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalItalianSausage"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraItalianSausage"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
 
         <TextView
             android:id="@+id/textViewSelectPremiumChicken"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_premium_chicken"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectItalianSausage" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectItalianSausage" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectPremiumChicken"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerChicken"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectPremiumChicken"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectPremiumChicken">
-
-            <RadioButton
-                android:id="@+id/radioButtonNonePremiumChicken"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightPremiumChicken"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalPremiumChicken"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraPremiumChicken"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectPremiumChicken" />
 
         <TextView
             android:id="@+id/textViewSelectBacon"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_bacon"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectPremiumChicken" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectPremiumChicken" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectBacon"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerBacon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectBacon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectBacon">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneBacon"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightBacon"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalBacon"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraBacon"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectBacon" />
 
         <TextView
             android:id="@+id/textViewSelectPhillySteak"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_philly_steak"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectBacon" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectBacon" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectPhillySteak"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerSteak"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectPhillySteak"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectPhillySteak">
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectPhillySteak" />
 
-            <RadioButton
-                android:id="@+id/radioButtonNonePhillySteak"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightPhillySteak"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalPhillySteak"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraPhillySteak"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
 
         <TextView
             android:id="@+id/textViewSelectHotBuffaloSauce"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_hot_buffalo_sauce"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectPhillySteak" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectPhillySteak" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectHotBuffaloSauce"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerSauce"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectHotBuffaloSauce"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectHotBuffaloSauce">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneHotBuffaloSauce"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightHotBuffaloSauce"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalHotBuffaloSauce"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraHotBuffaloSauce"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectHotBuffaloSauce" />
 
         <TextView
             android:id="@+id/textViewSelectJalapenoPeppers"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_jalapeno_peppers"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectHotBuffaloSauce" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectHotBuffaloSauce" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectJalapenoPeppers"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerJalapenoPeppers"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectJalapenoPeppers"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectJalapenoPeppers">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneJalapenoPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightJalapenoPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalJalapenoPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraJalapenoPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectJalapenoPeppers" />
 
         <TextView
             android:id="@+id/textViewSelectOnions"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_onions"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectJalapenoPeppers" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectJalapenoPeppers" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectOnions"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerOnions"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectOnions"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectOnions">
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectOnions" />
 
-            <RadioButton
-                android:id="@+id/radioButtonNoneOnions"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
 
-            <RadioButton
-                android:id="@+id/radioButtonLightOnions"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalOnions"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraOnions"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
 
         <TextView
             android:id="@+id/textViewSelectBananaPeppers"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_banana_peppers"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectOnions" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectOnions" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectBananaPeppers"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerBananaPeppers"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectBananaPeppers"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectBananaPeppers">
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectBananaPeppers" />
 
-            <RadioButton
-                android:id="@+id/radioButtonNoneBananaPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightBananaPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalBananaPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraBananaPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
 
         <TextView
             android:id="@+id/textViewSelectDicedTomatoes"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_dice_tomatoes"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectBananaPeppers" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectBananaPeppers" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectDicedTomatoes"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerTomatoes"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectDicedTomatoes"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectDicedTomatoes">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneDicedTomatoes"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightDicedTomatoes"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalDicedTomatoes"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraDicedTomatoes"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectDicedTomatoes" />
 
         <TextView
             android:id="@+id/textViewSelectBlackOlives"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_black_olives"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectDicedTomatoes" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectDicedTomatoes" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectBlackOlives"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerOlives"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectBlackOlives"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectBlackOlives">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneBlackOlives"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightBlackOlives"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalBlackOlives"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraBlackOlives"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectBlackOlives" />
 
         <TextView
             android:id="@+id/textViewSelectMushrooms"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_mushrooms"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectBlackOlives" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectBlackOlives" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectMushrooms"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerMushrooms"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectMushrooms"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectMushrooms">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneMushrooms"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightMushrooms"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalMushrooms"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraMushrooms"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectMushrooms" />
 
         <TextView
             android:id="@+id/textViewSelectPineapple"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_pineapple"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectMushrooms" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectMushrooms" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectPineapple"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerPineapple"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectPineapple"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectPineapple">
-
-            <RadioButton
-                android:id="@+id/radioButtonNonePineapple"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightPineapple"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalPineapple"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraPineapple"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectPineapple" />
 
         <TextView
             android:id="@+id/textViewSelectShreddedProvoloneCheese"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_shredded_provolone_cheese"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectPineapple" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectPineapple" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectShreddedProvoloneCheese"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerProvoloneCheese"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectShreddedProvoloneCheese"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectShreddedProvoloneCheese">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneShreddedProvoloneCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightShreddedProvoloneCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalShreddedProvoloneCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraShreddedProvoloneCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectShreddedProvoloneCheese" />
 
         <TextView
             android:id="@+id/textViewSelectCheddarCheeseBlend"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_cheddar_cheese_blend"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectShreddedProvoloneCheese" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectShreddedProvoloneCheese" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectCheddarCheeseBlend"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerCheddarCheese"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectCheddarCheeseBlend"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectCheddarCheeseBlend">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneCheddarCheeseBlend"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightCheddarCheeseBlend"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalCheddarCheeseBlend"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraCheddarCheeseBlend"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectCheddarCheeseBlend" />
 
         <TextView
             android:id="@+id/textViewSelectGreenPeppers"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_green_peppers"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectCheddarCheeseBlend" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectCheddarCheeseBlend" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectGreenPeppers"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerGreenPeppers"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectGreenPeppers"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectGreenPeppers">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneGreenPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightGreenPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalGreenPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraGreenPeppers"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectGreenPeppers" />
 
         <TextView
             android:id="@+id/textViewSelectSpinach"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_spinach"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectGreenPeppers" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectGreenPeppers" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectSpinach"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerSpinach"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectSpinach"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectSpinach">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneSpinach"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightSpinach"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalSpinach"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraSpinach"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectSpinach" />
 
         <TextView
             android:id="@+id/textViewSelectFetaCheese"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_feta_cheese"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectSpinach" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectSpinach" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectFetaCheese"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerFetaCheese"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectFetaCheese"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectFetaCheese">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneFetaCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightFetaCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalFetaCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraFetaCheese"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectFetaCheese" />
 
         <TextView
             android:id="@+id/textViewSelectShreddedParmesanAsiago"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/select_shredded_parmesan_asiago"
             android:textColor="#000000"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupSelectFetaCheese" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelectFetaCheese" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupSelectShreddedParmesanAsiago"
-            android:layout_width="0dp"
+        <Spinner
+            android:id="@+id/spinnerParmesanAsiago"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewSelectShreddedParmesanAsiago"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSelectShreddedParmesanAsiago">
-
-            <RadioButton
-                android:id="@+id/radioButtonNoneShreddedParmesanAsiago"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_none" />
-
-            <RadioButton
-                android:id="@+id/radioButtonLightShreddedParmesanAsiago"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_light" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNormalShreddedParmesanAsiago"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonExtraShreddedParmesanAsiago"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/select_extra" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="@+id/textViewSelectShreddedParmesanAsiago" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

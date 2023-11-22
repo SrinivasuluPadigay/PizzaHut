@@ -29,7 +29,7 @@ public class MenuFragment extends Fragment {
         // Required empty public constructor
     }
 
-    ArrayList<MenuItemDetails> menuItemDetailsList = new ArrayList<>();
+    ArrayList<MenuItemDetails> menuItemDetailsList;
 
     FragmentMenuBinding binding;
 
@@ -69,7 +69,6 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        menuItemDetailsList.clear();
         menuItemDetailsList = Utilities.getMenuList();
 
         adapter = new MenuAdapter();

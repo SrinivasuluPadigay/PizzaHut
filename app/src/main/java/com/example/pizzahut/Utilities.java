@@ -3,6 +3,7 @@ package com.example.pizzahut;
 import com.example.pizzahut.models.MenuItemDetails;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -122,5 +123,22 @@ public class Utilities {
 
     public static ArrayList<MenuItemDetails> getMenuList(){
         return menuItemDetailsList;
+    }
+
+    public static ArrayList<String> getCrustList(){
+        ArrayList<String> crustList = new ArrayList<>(Arrays.asList("Hand Tossed",
+                "Handmade Pan",
+                "Crunchy Thin Crust",
+                "Brooklyn",
+                "Gluten Free Crust"));
+        return crustList;
+    }
+
+    public static ArrayList<String> getSizeList(){
+        ArrayList<String> crustList = new ArrayList<>(Arrays.asList("Small(10')",
+                "Medium(12')",
+                "Large(14')",
+                "X-Large(16')"));
+        return crustList;
     }
 }
