@@ -11,6 +11,43 @@
     <string name="last_name">Last Name</string>
     <string name="phone">Phone Number</string>
     <string name= "cancel">Cancel</string>
+    <string name = "serving_options">1. Serving Options </string>
+    <string name = "select_crust">Select Crust</string>
+    <string name = "select_pizza_size">Select Size</string>
+    <string name = "select_quantity">Select Quantity</string>
+    <string name = "sauce_title">2. Sauce</string>
+    <string name = "select_sauce">Select Sauce</string>
+    <string name = "cheese_title">3. Cheese</string>
+    <string name = "select_cheese">Select Cheese</string>
+    <string name = "select_none">None</string>
+    <string name = "select_light">Light</string>
+    <string name = "select_normal">Normal</string>
+    <string name = "select_extra">Extra</string>
+    <string name = "toppings_title">4. Toppings</string>
+    <string name = "select_ham">Ham</string>
+    <string name = "select_beef">Beef</string>
+    <string name = "select_salami">Salami</string>
+    <string name = "select_pepperoni">Pepperoni</string>
+    <string name = "select_italian_sausage">Italian Sausage</string>
+    <string name = "select_premium_chicken">Premium Chicken</string>
+    <string name = "select_bacon">Bacon</string>
+    <string name = "select_philly_steak">Philly Steak</string>
+    <string name = "select_hot_buffalo_sauce">Hot Buffalo Sauce</string>
+    <string name = "select_jalapeno_peppers">Jalapeno Peppers</string>
+    <string name = "select_onions">Onions</string>
+    <string name = "select_banana_peppers">Banana Peppers</string>
+    <string name = "select_dice_tomatoes">Diced Tomatoes</string>
+    <string name = "select_black_olives">Black Olives</string>
+    <string name = "select_mushrooms">Mushrooms</string>
+    <string name = "select_pineapple">Pineapple</string>
+    <string name = "select_shredded_provolone_cheese">Shredded Provolone Cheese</string>
+    <string name = "select_cheddar_cheese_blend">Cheddar Cheese Blend</string>
+    <string name = "select_green_peppers">Green Peppers</string>
+    <string name = "select_spinach">Spinach</string>
+    <string name = "select_feta_cheese">Feta Cheese</string>
+    <string name = "select_shredded_parmesan_asiago">Shredded Parmesan Asiagno</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
