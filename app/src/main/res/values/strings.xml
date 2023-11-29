@@ -48,7 +48,7 @@
     <string name="select_shredded_parmesan_asiago">Shredded Parmesan Asiagno</string>
     <string name="cancel_label">Cancel</string>
     <string name="extra_sauce_title">5. Add Sauce For Dipping</string>
-    <string name="gralic_dipping_cup">Garlic Dipping Cup</string>
+    <string name="garlic_dipping_cup">Garlic Dipping Cup</string>
     <string name="ranch_dipping_cup">Ranch Dipping Cup</string>
     <string name="marinara_dipping_cup">Marinara Sauce Dipping Cup</string>
     <string name="special_instructions">6. Special Instructions</string>
@@ -63,7 +63,11 @@
     <string name="button_checkout">Checkout</string>
     <string name="thank_you_title">THANK YOU FOR YOUR ORDER</string>
     <string name="order_description">Please visit the Pizza Hut Store and show them this screen or tell them the order number to receive your order. Your order details are below.</string>
+    <string name="order_history">Please visit the Pizza Hut Store and show them this screen
+        or tell them the order number to receive your order.</string>
+
     <string name="line">__________________________________</string>
+    <string name="order_title">Order History</string>
     <string-array name="toppings_quantity">
         <item>None</item>
         <item>Light</item>

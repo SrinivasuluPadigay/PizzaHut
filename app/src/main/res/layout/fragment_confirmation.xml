@@ -25,13 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <ListView
-            android:id="@+id/listViewProducts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewProductsTitle"
-            tools:layout_editor_absoluteX="8dp" />
-
         <TextView
             android:id="@+id/textViewTotalAmount"
             android:layout_width="wrap_content"
@@ -42,7 +35,7 @@
             android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listViewProducts" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPizzaContent" />
 
         <TextView
             android:id="@+id/textViewFoodAndBeverages"
@@ -124,6 +117,58 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textViewTotalFinalAmount" />
+
+        <ImageView
+            android:id="@+id/imageViewPizzaConfirmation"
+            android:layout_width="122dp"
+            android:layout_height="119dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewProductsTitle"
+            app:srcCompat="@drawable/buffalo_chicken" />
+
+        <TextView
+            android:id="@+id/textViewPizzaTittleConfirmation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPizzaConfirmation"
+            app:layout_constraintTop_toBottomOf="@+id/textViewProductsTitle" />
+
+        <TextView
+            android:id="@+id/textViewPizzaDescription"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewPizzaConfirmation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPizzaConfirmation"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPizzaTittleConfirmation" />
+
+        <TextView
+            android:id="@+id/textViewPizzaContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPizzaConfirmation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
