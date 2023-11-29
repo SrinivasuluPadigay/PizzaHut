@@ -1,6 +1,7 @@
 package com.example.pizzahut;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
@@ -11,7 +12,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity implements LoginFragment.LoginFragmentListener,
         RegisterFragment.RegisterFragmentListener, MenuFragment.MenuFragmentListener,
         DetailsFragment.DetailsFragmentListener, SelectCrustFragment.SelectCrustListener,
-        SelectSizeFragment.SelectSizeListener {
+        SelectSizeFragment.SelectSizeListener, ConfirmationFragment.ConfirmationListener,
+        OrderHistoryFragment.orderHistoryListener, OrderPlacedFragment.OrderPlacedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,13 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
     }
 
     @Override
-    public void goToConfirmationFragment() {
+    public void goToMenuFragment() {
+        getSupportFragmentManager().
+                popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.root, new MenuFragment())
+                .commit();
     }
 
     @Override
@@ -124,5 +131,16 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
                 .replace(R.id.root, ConfirmationFragment.newInstance(itemCustomization, menuItemDetails))
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void goToCheckout(ItemCustomization itemCustomization,
+                             MenuItemDetails menuItemDetails, double pizzaPrice, String orderId) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.root, OrderPlacedFragment.newInstance(itemCustomization, menuItemDetails,
+                        pizzaPrice, orderId))
+                .addToBackStack(null)
+                .commit();
+
     }
 }

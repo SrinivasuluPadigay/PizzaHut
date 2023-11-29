@@ -10,5 +10,6 @@
     <color name="heading_background">#00BCD4</color>
     <color name="red_button_color">#F44336</color>
     <color name="text">#000000</color>
+    <color name="order_id">#B34545</color>
 
 </resources>

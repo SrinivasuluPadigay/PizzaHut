@@ -43,8 +43,8 @@ public class MenuFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.cart_item) {
-            mListener.goToConfirmationFragment();
+        if(item.getItemId() == R.id.home_item) {
+            mListener.goToMenuFragment();
             return true;
         } else if(item.getItemId() == R.id.logout_item){
             mListener.logout();
@@ -140,7 +140,7 @@ public class MenuFragment extends Fragment {
 
     interface MenuFragmentListener{
         void goToDetailsFragment(MenuItemDetails menuItemDetails);
-        void goToConfirmationFragment();
+        void goToMenuFragment();
         void logout();
         void orderHistory();
     }

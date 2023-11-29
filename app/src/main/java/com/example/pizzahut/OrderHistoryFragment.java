@@ -1,5 +1,6 @@
 package com.example.pizzahut;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -38,6 +42,30 @@ public class OrderHistoryFragment extends Fragment {
     }
 
     FragmentOrderHistoryBinding binding;
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.home_item) {
+            mListener.goToMenuFragment();
+            return true;
+        } else if(item.getItemId() == R.id.logout_item){
+            mListener.logout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main_menu, menu);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,7 +140,7 @@ public class OrderHistoryFragment extends Fragment {
                 if (orderDetails != null & orderDetails.getMenu_item_details() != null) {
                     Integer itemImage = orderDetails.getMenu_item_details().getItemImage();
                     itemBinding.imageOrderPizza.setImageResource(Utilities.getMenuImage(itemImage));
-                    itemBinding.textViewOrderHeading.setText("ID-" + orderDetails.getOrder_id());
+                    itemBinding.textViewOrderHeading.setText("Order ID :\n" + orderDetails.getOrder_id());
 
                     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
                     Timestamp timestamp = orderDetails.getCreated_at();
@@ -121,7 +149,7 @@ public class OrderHistoryFragment extends Fragment {
 
                     String formattedDate = sdf.format(date);
                     itemBinding.textViewOrderTime.setText(formattedDate);
-                    itemBinding.textViewOrderPrice.setText(String.format("%.2f", orderDetails.getOrder_price()));
+                    itemBinding.textViewOrderPrice.setText(String.format("%.2f", orderDetails.getOrder_price()) + " $");
                 }
             }
         }
@@ -133,5 +161,17 @@ public class OrderHistoryFragment extends Fragment {
         if (listenerRegistration!=null){
             listenerRegistration.remove();
         }
+    }
+
+    orderHistoryListener mListener;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mListener = (orderHistoryListener) context;
+    }
+
+    interface orderHistoryListener{
+        void goToMenuFragment();
+        void logout();
     }
 }

@@ -58,7 +58,7 @@
     <string name="button_add_to_order">Add to order</string>
     <string name="products">Products</string>
     <string name="food_and_beverages">Food and Beverages:</string>
-    <string name="taxes">Taxes: </string>
+    <string name="taxes">10% Tax: </string>
     <string name="final_total">Total: </string>
     <string name="button_checkout">Checkout</string>
     <string name="thank_you_title">THANK YOU FOR YOUR ORDER</string>

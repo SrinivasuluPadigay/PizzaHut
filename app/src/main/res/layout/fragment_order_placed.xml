@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:paddingBottom="8dp"
-        android:text="Order#1 WAS SUCCESSFULLY PLACED."
+        android:text="Order WAS SUCCESSFULLY PLACED."
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#F44336"
         android:textStyle="bold"
@@ -40,13 +40,13 @@
         android:id="@+id/textViewOrderDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/order_description"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewOrderDetailsPlaced" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrderId" />
 
     <TextView
         android:id="@+id/textViewTotalAmount"
@@ -88,12 +88,11 @@
         android:id="@+id/textViewTaxes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:text="@string/taxes"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textViewTotalTax"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTotalTax"
+        app:layout_constraintEnd_toEndOf="@+id/textViewFoodAndBeverages"
         app:layout_constraintTop_toTopOf="@+id/textViewTotalTax" />
 
     <TextView
@@ -130,6 +129,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/textViewTotalFinalAmount"
         app:layout_constraintEnd_toStartOf="@+id/textViewTotalFinalAmount"
         app:layout_constraintTop_toTopOf="@+id/textViewTotalFinalAmount" />
+
+    <TextView
+        android:id="@+id/textViewOrderId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Order ID: "
+        android:textColor="#F44336"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrderDetailsPlaced" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,9 @@ package com.example.pizzahut;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -63,8 +66,27 @@ public class DetailsFragment extends Fragment {
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.home_item) {
+            mListener.goToMenuFragment();
+            return true;
+        } else if(item.getItemId() == R.id.logout_item){
+            mListener.logout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main_menu, menu);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             menuItemDetails = (MenuItemDetails) getArguments().getSerializable(ARG_PARAM_MENU_ITEM);
         }
@@ -803,5 +825,7 @@ public class DetailsFragment extends Fragment {
         void selectCrust();
         void selectSize();
         void confirmationFragment(ItemCustomization itemCustomization, MenuItemDetails menuItemDetails);
+        void goToMenuFragment();
+        void logout();
     }
 }
