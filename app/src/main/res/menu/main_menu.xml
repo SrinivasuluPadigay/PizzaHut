@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/cart_item"
-        android:icon="@drawable/cart"
+        android:id="@+id/home_item"
+        android:icon="@drawable/home_icon"
         android:title="cart_item"
         app:showAsAction="always" />
 
