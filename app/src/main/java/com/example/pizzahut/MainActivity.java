@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.pizzahut.models.ItemCustomization;
 import com.example.pizzahut.models.MenuItemDetails;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -71,6 +72,14 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
     }
 
     @Override
+    public void orderHistory() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.root, new OrderHistoryFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
     public void selectCrust() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.root, new SelectCrustFragment())
@@ -107,5 +116,13 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
             detailsFragment.setSelectedCrust(selectCrust);
         }
         getSupportFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void confirmationFragment(ItemCustomization itemCustomization, MenuItemDetails menuItemDetails) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.root, ConfirmationFragment.newInstance(itemCustomization, menuItemDetails))
+                .addToBackStack(null)
+                .commit();
     }
 }

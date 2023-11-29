@@ -18,7 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pizzahut.databinding.FragmentDetailsBinding;
 import com.example.pizzahut.databinding.SauceListItemBinding;
+import com.example.pizzahut.models.ItemCustomization;
 import com.example.pizzahut.models.MenuItemDetails;
+import com.example.pizzahut.models.SpecialInstructions;
+import com.example.pizzahut.models.Toppings;
 
 import java.util.ArrayList;
 
@@ -26,11 +29,18 @@ public class DetailsFragment extends Fragment {
     private static final String ARG_PARAM_MENU_ITEM = "ARG_PARAM_MENU_ITEM";
 
     private MenuItemDetails menuItemDetails;
-
+    private Toppings toppings = new Toppings();
+    private SpecialInstructions specialInstructions = new SpecialInstructions();
     private ArrayList<String> sauceList = new ArrayList<>();
     private String selectedCrust = null;
     private String selectedSize = null;
-    private Integer selectedQuantity = 0;
+    private String selectedServingCheeseQuantity;
+    private Integer selectedServingQuantity = 0;
+    private Integer garlicDipQuantity = 0;
+    private Integer ranchDipQuantity = 0;
+    private Integer marinaraSauceDipQuantity = 0;
+
+    private ArrayList<String> toppingsList = new ArrayList<>();
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -104,15 +114,15 @@ public class DetailsFragment extends Fragment {
             }
         });
 
-        selectedQuantity = Integer.valueOf(binding.textViewItemQuantity.getText().toString());
+        selectedServingQuantity = Integer.valueOf(binding.textViewItemQuantity.getText().toString());
         binding.imageViewDecrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedQuantity == 0){
+                if (selectedServingQuantity == 0){
                     Toast.makeText(getActivity(), "Minimum quantity one", Toast.LENGTH_LONG).show();
                 }else {
-                    selectedQuantity = selectedQuantity - 1;
-                    binding.textViewItemQuantity.setText(String.valueOf(selectedQuantity));
+                    selectedServingQuantity = selectedServingQuantity - 1;
+                    binding.textViewItemQuantity.setText(String.valueOf(selectedServingQuantity));
                 }
             }
         });
@@ -120,11 +130,108 @@ public class DetailsFragment extends Fragment {
         binding.imageViewIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedQuantity = selectedQuantity + 1;
-                binding.textViewItemQuantity.setText(String.valueOf(selectedQuantity));
+                selectedServingQuantity = selectedServingQuantity + 1;
+                binding.textViewItemQuantity.setText(String.valueOf(selectedServingQuantity));
             }
         });
 
+        garlicDipQuantity = Integer.valueOf(binding.textViewItemQuantityGarlicDipping.getText()
+                                    .toString());
+        binding.imageViewDecrementGarlicDipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                garlicDipQuantity = garlicDipQuantity - 1;
+                if (garlicDipQuantity < 0){
+                    garlicDipQuantity = 0;
+                }
+                binding.textViewItemQuantityGarlicDipping.setText(String.valueOf(garlicDipQuantity));
+            }
+        });
+
+        binding.imageViewIncrementGarlicDipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                garlicDipQuantity = garlicDipQuantity + 1;
+                binding.textViewItemQuantityGarlicDipping.setText(String.valueOf(garlicDipQuantity));
+            }
+        });
+
+        ranchDipQuantity = Integer.valueOf(binding.textViewItemQuantityRanchDipping.getText()
+                .toString());
+        binding.imageViewDecrementRanchDipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ranchDipQuantity = ranchDipQuantity - 1;
+                if (ranchDipQuantity < 0){
+                    ranchDipQuantity = 0;
+                }
+                binding.textViewItemQuantityRanchDipping.setText(String.valueOf(ranchDipQuantity));
+            }
+        });
+
+        binding.imageViewIncrementRanchDipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ranchDipQuantity = ranchDipQuantity + 1;
+                binding.textViewItemQuantityRanchDipping.setText(String.valueOf(ranchDipQuantity));
+            }
+        });
+
+        marinaraSauceDipQuantity = Integer.valueOf(binding.textViewItemQuantityMarinaraSauceDipping.getText()
+                .toString());
+        binding.imageViewDecrementMarinaraSauceDipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                marinaraSauceDipQuantity = marinaraSauceDipQuantity - 1;
+                if (marinaraSauceDipQuantity < 0){
+                    marinaraSauceDipQuantity = 0;
+                }
+                binding.textViewItemQuantityMarinaraSauceDipping.setText(String.valueOf(marinaraSauceDipQuantity));
+            }
+        });
+
+        binding.imageViewIncrementMarinaraSauceDipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                marinaraSauceDipQuantity = marinaraSauceDipQuantity + 1;
+                binding.textViewItemQuantityMarinaraSauceDipping.setText(String.valueOf(marinaraSauceDipQuantity));
+            }
+        });
+
+        binding.ButtonAddToOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectedCrust == null){
+                    Toast.makeText(getActivity(), "Select Crust", Toast.LENGTH_LONG).show();
+                }else if (selectedSize == null){
+                    Toast.makeText(getActivity(), "Select Pizza Size", Toast.LENGTH_LONG).show();
+                }else if (selectedServingQuantity == null){
+                    Toast.makeText(getActivity(), "Select Number of Pizza", Toast.LENGTH_LONG).show();
+                }else if (sauceList.size() < 1){
+                    Toast.makeText(getActivity(), "Select Sauce", Toast.LENGTH_LONG).show();
+                }else if (selectedServingCheeseQuantity == null){
+                    Toast.makeText(getActivity(), "Select Cheese Quantity", Toast.LENGTH_LONG).show();
+                }else{
+                    addToOrder();
+                }
+            }
+        });
+
+    }
+
+    private void addToOrder(){
+        ItemCustomization itemCustomization = new ItemCustomization();
+        itemCustomization.setServing_crust(selectedCrust);
+        itemCustomization.setServing_size(selectedSize);
+        itemCustomization.setServing_quantity(selectedServingQuantity);
+        itemCustomization.setServing_sauce(sauceList.get(0));
+        itemCustomization.setCheese_quantity(selectedServingCheeseQuantity);
+        itemCustomization.setToppings(toppings);
+        itemCustomization.setSpecialInstructions(specialInstructions);
+        itemCustomization.setGarlic_dip_quantity(garlicDipQuantity);
+        itemCustomization.setRanch_dip_quantity(ranchDipQuantity);
+        itemCustomization.setMarinara_sauce_dip_quantity(marinaraSauceDipQuantity);
+        mListener.confirmationFragment(itemCustomization, menuItemDetails);
     }
 
     private void spinnerSetUp() {
@@ -138,7 +245,7 @@ public class DetailsFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String sauce = parent.getItemAtPosition(position).toString();
                 if(!sauce.equalsIgnoreCase("none") && !sauceList.contains(sauce)) {
-                    sauceList.add(sauce);
+                    sauceList.add(0, sauce);
                     sauceAdapter.notifyDataSetChanged();
                 }
             }
@@ -157,7 +264,7 @@ public class DetailsFragment extends Fragment {
         spinnerCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                selectedServingCheeseQuantity =  parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -176,6 +283,7 @@ public class DetailsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String hamTopping = parent.getItemAtPosition(position).toString();
+                toppings.setHam(hamTopping);
             }
 
             @Override
@@ -193,7 +301,8 @@ public class DetailsFragment extends Fragment {
         spinnerBeef.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String beef = parent.getItemAtPosition(position).toString();
+                toppings.setBeef(beef);
             }
 
             @Override
@@ -211,7 +320,8 @@ public class DetailsFragment extends Fragment {
         spinnerBacon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String bacon = parent.getItemAtPosition(position).toString();
+                toppings.setBacon(bacon);
             }
 
             @Override
@@ -230,7 +340,8 @@ public class DetailsFragment extends Fragment {
         spinnerSalami.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String salami = parent.getItemAtPosition(position).toString();
+                toppings.setSalami(salami);
             }
 
             @Override
@@ -249,7 +360,8 @@ public class DetailsFragment extends Fragment {
         spinnerPepperoni.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String pepperoni = parent.getItemAtPosition(position).toString();
+                toppings.setPepperoni(pepperoni);
             }
 
             @Override
@@ -267,7 +379,8 @@ public class DetailsFragment extends Fragment {
         spinnerSausage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String sausage = parent.getItemAtPosition(position).toString();
+                toppings.setItalian_sausage(sausage);
             }
 
             @Override
@@ -285,7 +398,8 @@ public class DetailsFragment extends Fragment {
         spinnerChicken.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String chicken = parent.getItemAtPosition(position).toString();
+                toppings.setPremium_chicken(chicken);
             }
 
             @Override
@@ -303,7 +417,8 @@ public class DetailsFragment extends Fragment {
         spinnerSteak.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String steak = parent.getItemAtPosition(position).toString();
+                toppings.setPhilly_steak(steak);
             }
 
             @Override
@@ -321,7 +436,8 @@ public class DetailsFragment extends Fragment {
         spinnerSauce.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String sauce = parent.getItemAtPosition(position).toString();
+                toppings.setHot_buffalo_sauce(sauce);
             }
 
             @Override
@@ -339,7 +455,8 @@ public class DetailsFragment extends Fragment {
         spinnerJalapenoPeppers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String jalapenoPeppers = parent.getItemAtPosition(position).toString();
+                toppings.setJalapeno_peppers(jalapenoPeppers);
             }
 
             @Override
@@ -357,7 +474,8 @@ public class DetailsFragment extends Fragment {
         spinnerOnions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String onions = parent.getItemAtPosition(position).toString();
+                toppings.setOnions(onions);
             }
 
             @Override
@@ -375,7 +493,8 @@ public class DetailsFragment extends Fragment {
         spinnerBananaPeppers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String bananaPeppers = parent.getItemAtPosition(position).toString();
+                toppings.setBanana_peppers(bananaPeppers);
             }
 
             @Override
@@ -394,7 +513,8 @@ public class DetailsFragment extends Fragment {
         spinnerTomatoes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String tomatoes = parent.getItemAtPosition(position).toString();
+                toppings.setDiced_tomatoes(tomatoes);
             }
 
             @Override
@@ -412,7 +532,8 @@ public class DetailsFragment extends Fragment {
         spinnerOlives.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String olives = parent.getItemAtPosition(position).toString();
+                toppings.setBlack_olives(olives);
             }
 
             @Override
@@ -429,7 +550,8 @@ public class DetailsFragment extends Fragment {
         spinnerMushrooms.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String mushrooms = parent.getItemAtPosition(position).toString();
+                toppings.setMushrooms(mushrooms);
             }
 
             @Override
@@ -446,7 +568,9 @@ public class DetailsFragment extends Fragment {
         spinnerPineapple.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String pineapple = parent.getItemAtPosition(position).toString();
+                toppings.setPineapple(pineapple);
+
             }
 
             @Override
@@ -464,7 +588,8 @@ public class DetailsFragment extends Fragment {
         spinnerProvoloneCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String provoloneCheese = parent.getItemAtPosition(position).toString();
+                toppings.setShredded_provolone_cheese(provoloneCheese);
             }
 
             @Override
@@ -481,7 +606,8 @@ public class DetailsFragment extends Fragment {
         spinnerCheddarCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String cheddarCheese = parent.getItemAtPosition(position).toString();
+                toppings.setCheddar_cheese_blend(cheddarCheese);
             }
 
             @Override
@@ -499,7 +625,8 @@ public class DetailsFragment extends Fragment {
         spinnerGreenPeppers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String greenPeppers = parent.getItemAtPosition(position).toString();
+                toppings.setGreen_peppers(greenPeppers);
             }
 
             @Override
@@ -516,7 +643,8 @@ public class DetailsFragment extends Fragment {
         spinnerSpinach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String spinach = parent.getItemAtPosition(position).toString();
+                toppings.setSpinach(spinach);
             }
 
             @Override
@@ -534,7 +662,8 @@ public class DetailsFragment extends Fragment {
         spinnerFetaCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String fetaCheese = parent.getItemAtPosition(position).toString();
+                toppings.setFeta_cheese(fetaCheese);
             }
 
             @Override
@@ -552,7 +681,62 @@ public class DetailsFragment extends Fragment {
         spinnerParmesanAsiago.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String hamTopping = parent.getItemAtPosition(position).toString();
+                String parmesanAsiago = parent.getItemAtPosition(position).toString();
+                toppings.setShredded_parmesan_asiago(parmesanAsiago);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Spinner spinnerCutType = binding.spinnerCutType;
+        ArrayAdapter<CharSequence> adapterCutType = ArrayAdapter.createFromResource(getActivity(),
+                R.array.cut_type_list, android.R.layout.simple_spinner_item);
+        adapterCutType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCutType.setAdapter(adapterCutType);
+        spinnerCutType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String cutType = parent.getItemAtPosition(position).toString();
+                specialInstructions.setCut_type(cutType);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Spinner spinnerBakeType = binding.spinnerBakeType;
+        ArrayAdapter<CharSequence> adapterBakeType = ArrayAdapter.createFromResource(getActivity(),
+                R.array.bake_type_list, android.R.layout.simple_spinner_item);
+        adapterBakeType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerBakeType.setAdapter(adapterBakeType);
+        spinnerBakeType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String bakeType = parent.getItemAtPosition(position).toString();
+                specialInstructions.setBake_type(bakeType);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Spinner spinnerSeasoning = binding.spinnerSeasoning;
+        ArrayAdapter<CharSequence> adapterSeasoning = ArrayAdapter.createFromResource(getActivity(),
+                R.array.seasoning_type_list, android.R.layout.simple_spinner_item);
+        adapterSeasoning.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSeasoning.setAdapter(adapterSeasoning);
+        spinnerSeasoning.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String seasoning = parent.getItemAtPosition(position).toString();
+                specialInstructions.setSeasoning(seasoning);
             }
 
             @Override
@@ -603,6 +787,7 @@ public class DetailsFragment extends Fragment {
             }
         }
     }
+
     DetailsFragmentListener mListener;
 
     @Override
@@ -617,5 +802,6 @@ public class DetailsFragment extends Fragment {
     interface DetailsFragmentListener{
         void selectCrust();
         void selectSize();
+        void confirmationFragment(ItemCustomization itemCustomization, MenuItemDetails menuItemDetails);
     }
 }

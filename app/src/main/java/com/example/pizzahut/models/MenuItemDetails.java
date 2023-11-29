@@ -34,4 +34,13 @@ public class MenuItemDetails implements Serializable {
     public void setItemImage(Integer itemImage) {
         this.itemImage = itemImage;
     }
+
+    @Override
+    public String toString() {
+        return "MenuItemDetails{" +
+                "itemDescription='" + itemDescription + '\'' +
+                ", itemTitle='" + itemTitle + '\'' +
+                ", itemImage=" + itemImage +
+                '}';
+    }
 }

@@ -75,6 +75,13 @@ public class MenuFragment extends Fragment {
         binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewMenu.setAdapter(adapter);
 
+        binding.buttonOrderHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.orderHistory();
+            }
+        });
+
     }
 
     class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder>{
@@ -135,5 +142,6 @@ public class MenuFragment extends Fragment {
         void goToDetailsFragment(MenuItemDetails menuItemDetails);
         void goToConfirmationFragment();
         void logout();
+        void orderHistory();
     }
 }
