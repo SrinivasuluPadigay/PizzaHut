@@ -39,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Order History"
+        android:background="@color/heading_background"
         android:shadowColor="@color/heading_background"
         app:layout_constraintBottom_toBottomOf="@+id/textViewHeading"
         app:layout_constraintEnd_toEndOf="parent"

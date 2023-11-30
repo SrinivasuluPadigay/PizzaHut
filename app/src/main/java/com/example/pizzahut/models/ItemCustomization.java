@@ -178,9 +178,9 @@ public class ItemCustomization implements Serializable {
             case ("None") :
             case ("No Garlic-Seasoned Crust") :
                 return 0.0;
-            case ("Light") : return 0.75;
-            case ("Normal") : return 1.0;
-            case ("Extra") : return 1.25;
+            case ("Light") : return 0.25;
+            case ("Normal") : return 0.55;
+            case ("Extra") : return 1.22;
             case ("Garlic-Seasoned Crust") : return 0.89;
             case ("Small(10')") : return 8.99;
             case ("Medium(12')") : return 13.99;
