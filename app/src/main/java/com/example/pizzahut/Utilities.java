@@ -5,6 +5,7 @@ import com.example.pizzahut.models.MenuItemDetails;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Utilities {
@@ -141,4 +142,46 @@ public class Utilities {
                 "X-Large(16')"));
         return crustList;
     }
+
+    public static ArrayList<Integer> getPizzaConfig(String menuItem){
+        Map<String, ArrayList<Integer>> toppingsConfig = new HashMap<>();
+
+        toppingsConfig.put("Build Your Own Pizza",
+                new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0)));
+        toppingsConfig.put("ExtravaganZZa",
+                new ArrayList<>(Arrays.asList(2,2,0,2,0,0,0,0,0,0,2,0,0,2,2,0,2,0,2,0,0,0)));
+        toppingsConfig.put("MeatZZa",
+                new ArrayList<>(Arrays.asList(2,2,0,2,2,2,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0)));
+        toppingsConfig.put("Philly Cheese Steak",
+                new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,2,0,0,2,0,0,0,2,0,0,0,2,0,0,0)));
+        toppingsConfig.put("Pacific Veggie",
+                new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,2,0,2,2,2,0,2,0,0,0,0,0)));
+        toppingsConfig.put("Honolulu Hawaiian",
+                new ArrayList<>(Arrays.asList(2,2,0,0,0,0,0,0,0,0,2,0,0,0,0,2,2,0,2,0,0,0)));
+        toppingsConfig.put("Deluxe",
+                new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,2,0,2,0,0,0)));
+        toppingsConfig.put("Cali Chicken Bacon Ranch",
+                new ArrayList<>(Arrays.asList(0,0,0,0,0,2,2,0,0,0,2,0,2,0,0,0,2,0,0,0,0,0)));
+        toppingsConfig.put("Buffalo Chicken",
+                new ArrayList<>(Arrays.asList(0,0,0,0,0,2,0,0,0,2,2,0,0,0,0,0,2,2,0,0,0,0)));
+        toppingsConfig.put("Ultimate Pepperoni",
+                new ArrayList<>(Arrays.asList(0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,2)));
+        toppingsConfig.put("Memphis BBQ Chicken",
+                new ArrayList<>(Arrays.asList(0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,2,2,0,0,0,0)));
+        toppingsConfig.put("Wisconsin 6 Cheese",
+                new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,2,0,0,0,2,2)));
+        toppingsConfig.put("Spinach & Feta",
+                new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,2,0,2,2,2)));
+
+
+        if (toppingsConfig.containsKey(menuItem)){
+            return toppingsConfig.get(menuItem);
+        }
+        return toppingsConfig.get("Build Your Own Pizza");
+    }
+
+    /*
+
+
+     */
 }

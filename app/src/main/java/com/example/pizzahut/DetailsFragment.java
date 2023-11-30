@@ -109,6 +109,7 @@ public class DetailsFragment extends Fragment {
         sauceAdapter = new SauceAdapter();
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(sauceAdapter);
+        binding.textViewTitle.setText(menuItemDetails.getItemTitle());
 
         spinnerSetUp();
         if (selectedCrust == null){
@@ -227,12 +228,12 @@ public class DetailsFragment extends Fragment {
                     Toast.makeText(getActivity(), "Select Crust", Toast.LENGTH_LONG).show();
                 }else if (selectedSize == null){
                     Toast.makeText(getActivity(), "Select Pizza Size", Toast.LENGTH_LONG).show();
-                }else if (selectedServingQuantity == null){
+                }else if (selectedServingQuantity == 0){
                     Toast.makeText(getActivity(), "Select Number of Pizza", Toast.LENGTH_LONG).show();
                 }else if (sauceList.size() < 1){
                     Toast.makeText(getActivity(), "Select Sauce", Toast.LENGTH_LONG).show();
-                }else if (selectedServingCheeseQuantity == null){
-                    Toast.makeText(getActivity(), "Select Cheese Quantity", Toast.LENGTH_LONG).show();
+//                }else if (selectedServingCheeseQuantity == null){
+//                    Toast.makeText(getActivity(), "Select Cheese Quantity", Toast.LENGTH_LONG).show();
                 }else{
                     addToOrder();
                 }
@@ -256,8 +257,11 @@ public class DetailsFragment extends Fragment {
         mListener.confirmationFragment(itemCustomization, menuItemDetails);
     }
 
+    Spinner spinnerSelectedSauce;
+    ArrayList<Integer> pizzaToppingsConfig;
     private void spinnerSetUp() {
-        Spinner spinnerSelectedSauce = binding.spinnerSelectedSauce;
+        pizzaToppingsConfig = Utilities.getPizzaConfig(menuItemDetails.getItemTitle());
+        spinnerSelectedSauce = binding.spinnerSelectedSauce;
         ArrayAdapter<CharSequence> adapterSelectedSauce = ArrayAdapter.createFromResource(getActivity(),
                 R.array.sauces, android.R.layout.simple_spinner_item);
         adapterSelectedSauce.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -267,7 +271,12 @@ public class DetailsFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String sauce = parent.getItemAtPosition(position).toString();
                 if(!sauce.equalsIgnoreCase("none") && !sauceList.contains(sauce)) {
-                    sauceList.add(0, sauce);
+                    sauceList.clear();
+                    sauceList.add(sauce);
+                    sauceAdapter.notifyDataSetChanged();
+                }
+                if (sauce.equalsIgnoreCase("none")){
+                    sauceList.clear();
                     sauceAdapter.notifyDataSetChanged();
                 }
             }
@@ -283,6 +292,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterCheese.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCheese.setAdapter(adapterCheese);
+        spinnerCheese.setSelection(2);
         spinnerCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -301,6 +311,8 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerHam.setAdapter(adapter);
+        Integer integer = pizzaToppingsConfig.get(0);
+        spinnerHam.setSelection(integer);
         spinnerHam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -320,6 +332,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterBeef.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerBeef.setAdapter(adapterBeef);
+                spinnerBeef.setSelection(pizzaToppingsConfig.get(1));
         spinnerBeef.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -333,32 +346,13 @@ public class DetailsFragment extends Fragment {
             }
         });
 
-        //Bacon
-        Spinner spinnerBacon = binding.spinnerBacon;
-        ArrayAdapter<CharSequence> adapterBacon = ArrayAdapter.createFromResource(getActivity(),
-                R.array.toppings_quantity, android.R.layout.simple_spinner_item);
-        adapterBacon.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerBacon.setAdapter(adapterBacon);
-        spinnerBacon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String bacon = parent.getItemAtPosition(position).toString();
-                toppings.setBacon(bacon);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
         //Salami
         Spinner spinnerSalami = binding.spinnerSalami;
         ArrayAdapter<CharSequence> adapterSalami = ArrayAdapter.createFromResource(getActivity(),
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterSalami.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSalami.setAdapter(adapterSalami);
+                spinnerSalami.setSelection(pizzaToppingsConfig.get(2));
         spinnerSalami.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -372,13 +366,13 @@ public class DetailsFragment extends Fragment {
             }
         });
 
-
         //Pepperoni
         Spinner spinnerPepperoni = binding.spinnerPepperoni;
         ArrayAdapter<CharSequence> adapterPepperoni = ArrayAdapter.createFromResource(getActivity(),
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterPepperoni.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPepperoni.setAdapter(adapterPepperoni);
+                spinnerPepperoni.setSelection(pizzaToppingsConfig.get(3));
         spinnerPepperoni.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -398,6 +392,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterSausage.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSausage.setAdapter(adapterSausage);
+                spinnerSausage.setSelection(pizzaToppingsConfig.get(4));
         spinnerSausage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -417,11 +412,32 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterChicken.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerChicken.setAdapter(adapterChicken);
+                spinnerChicken.setSelection(pizzaToppingsConfig.get(5));
         spinnerChicken.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String chicken = parent.getItemAtPosition(position).toString();
                 toppings.setPremium_chicken(chicken);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //Bacon
+        Spinner spinnerBacon = binding.spinnerBacon;
+        ArrayAdapter<CharSequence> adapterBacon = ArrayAdapter.createFromResource(getActivity(),
+                R.array.toppings_quantity, android.R.layout.simple_spinner_item);
+        adapterBacon.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerBacon.setAdapter(adapterBacon);
+                spinnerBacon.setSelection(pizzaToppingsConfig.get(6));
+        spinnerBacon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String bacon = parent.getItemAtPosition(position).toString();
+                toppings.setBacon(bacon);
             }
 
             @Override
@@ -436,6 +452,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterSteak.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSteak.setAdapter(adapterSteak);
+                spinnerSteak.setSelection(pizzaToppingsConfig.get(7));
         spinnerSteak.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -455,6 +472,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterSauce.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSauce.setAdapter(adapterSauce);
+                spinnerSauce.setSelection(pizzaToppingsConfig.get(8));
         spinnerSauce.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -474,6 +492,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterJalapenoPeppers.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerJalapenoPeppers.setAdapter(adapterJalapenoPeppers);
+                spinnerJalapenoPeppers.setSelection(pizzaToppingsConfig.get(9));
         spinnerJalapenoPeppers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -493,6 +512,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterOnions.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOnions.setAdapter(adapterOnions);
+                spinnerOnions.setSelection(pizzaToppingsConfig.get(10));
         spinnerOnions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -512,6 +532,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterBananaPeppers.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerBananaPeppers.setAdapter(adapterBananaPeppers);
+                spinnerBananaPeppers.setSelection(pizzaToppingsConfig.get(11));
         spinnerBananaPeppers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -532,6 +553,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterTomatoes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTomatoes.setAdapter(adapterTomatoes);
+                spinnerTomatoes.setSelection(pizzaToppingsConfig.get(12));
         spinnerTomatoes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -551,6 +573,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterOlives.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOlives.setAdapter(adapterOlives);
+                spinnerOlives.setSelection(pizzaToppingsConfig.get(13));
         spinnerOlives.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -569,6 +592,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterMushrooms.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMushrooms.setAdapter(adapterMushrooms);
+                spinnerMushrooms.setSelection(pizzaToppingsConfig.get(14));
         spinnerMushrooms.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -587,6 +611,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterPineapple.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPineapple.setAdapter(adapterPineapple);
+                spinnerPineapple.setSelection(pizzaToppingsConfig.get(15));
         spinnerPineapple.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -607,6 +632,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterProvoloneCheese.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProvoloneCheese.setAdapter(adapterProvoloneCheese);
+                spinnerProvoloneCheese.setSelection(pizzaToppingsConfig.get(16));
         spinnerProvoloneCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -625,6 +651,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterCheddarCheese.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCheddarCheese.setAdapter(adapterCheddarCheese);
+                spinnerCheddarCheese.setSelection(pizzaToppingsConfig.get(17));
         spinnerCheddarCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -644,6 +671,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterGreenPeppers.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGreenPeppers.setAdapter(adapterGreenPeppers);
+                spinnerGreenPeppers.setSelection(pizzaToppingsConfig.get(18));
         spinnerGreenPeppers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -662,6 +690,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterSpinach.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSpinach.setAdapter(adapterSpinach);
+                spinnerSpinach.setSelection(pizzaToppingsConfig.get(19));
         spinnerSpinach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -681,6 +710,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterFetaCheese.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerFetaCheese.setAdapter(adapterFetaCheese);
+                spinnerFetaCheese.setSelection(pizzaToppingsConfig.get(20));
         spinnerFetaCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -700,6 +730,7 @@ public class DetailsFragment extends Fragment {
                 R.array.toppings_quantity, android.R.layout.simple_spinner_item);
         adapterAsiago.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerParmesanAsiago.setAdapter(adapterAsiago);
+        spinnerParmesanAsiago.setSelection(pizzaToppingsConfig.get(21));
         spinnerParmesanAsiago.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -803,6 +834,9 @@ public class DetailsFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         sauceList.remove(sauce);
+                        if (sauceList.size() < 1){
+                            spinnerSelectedSauce.setSelection(0);
+                        }
                         notifyDataSetChanged();
                     }
                 });
